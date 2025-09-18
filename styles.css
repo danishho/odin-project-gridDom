@@ -1,0 +1,23 @@
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;   /* stack rows vertically */
+  width: 400px;             /* adjust as needed */
+  height: 400px;
+}
+
+.gridRow {
+  display: flex;            /* make cells align horizontally */
+  flex: 1;                  /* each row takes equal height */
+}
+
+.cell {
+  flex: 1;                  /* each cell takes equal width */
+  border: 1px solid black;  /* grid lines */
+  background-color: white;  /* default color */
+}
