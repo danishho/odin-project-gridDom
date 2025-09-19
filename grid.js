@@ -1,6 +1,8 @@
 // Get the container
 const container = document.querySelector(".container");
 
+let count = 0;
+let opacity = 0;
 
 // Call it
 defaultGrid();
@@ -31,8 +33,9 @@ function rgb(){
   // Generate a random integer for the blue component (0-255)
   const b = Math.floor(Math.random() * 256);
 
+  opacity = Math.min(1, +(opacity + 0.1).toFixed(2));
   // Return the RGB color string
-  return `rgb(${r}, ${g}, ${b})`;
+  return `rgb(${r} ${g} ${b} / ${opacity})`;
 }
 // Takes (rows, columns) input and makes a grid
 function makeRows(rowNum, cellNum) {
@@ -45,8 +48,6 @@ function makeRows(rowNum, cellNum) {
       let cell = document.createElement("div");
       cell.classList.add("cell");
       row.appendChild(cell);
-
-
     }
 
     container.appendChild(row);
@@ -58,8 +59,19 @@ function hover(event){
   if(!event.target.classList.contains("cell") ) return
 
   if(event.type ===  "mouseenter"){
-    const colorRGB = rgb();
-    event.target.style.backgroundColor = colorRGB;
+    if(count < 10){
+      
+      let colorRGB = rgb();
+      console.log(colorRGB);
+      event.target.style.backgroundColor = colorRGB;
+      opacity = count / 10;
+      count++;
+    }else{
+      count = 0;
+      opacity = 0;
+    }
+
+  
   }else if(event.type ===  "mouseout"){
 
     setTimeout(() =>  {
